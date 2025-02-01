@@ -19,6 +19,9 @@ enum Route {
     case reminderReport // OLD
     case fuelReport(input: FuelExpense)
 
+    // Documents
+    case docScanner
+
     // Settings
     case tos
     case aboutUs
@@ -50,6 +53,8 @@ extension Route: Equatable {
             true
         case let (.fuelReport(leftData), .fuelReport(rightData)):
             leftData == rightData
+        case (.docScanner, .docScanner):
+            true
         case (.aboutUs, .aboutUs):
             true
         case let (.editVehicle(leftData), .editVehicle(rightData)):
@@ -77,6 +82,8 @@ extension Route: View {
             ReminderReportView()
         case let .fuelReport(fuelData):
             FuelReportView(fuelExpense: fuelData)
+        case .docScanner:
+            DocumentScannerView()
         case .tos:
             HTMLView(htmlFileName: "TermsOfService")
         case .aboutUs:
